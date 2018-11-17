@@ -9,8 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthService } from './auth/auth.service';
-import { APP_BASE_HREF } from '@angular/common';
 import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +22,7 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     HttpClientModule,
     NoopAnimationsModule,
+    SharedModule,
     CoreModule.forRoot(),
   ],
   providers: [AuthGuard, AuthService],

@@ -1,34 +1,13 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 import { AngularFireModule } from '@angular/fire';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { AngularFireAuthModule } from '@angular/fire/auth';
 import { firebaseConfig } from '../../environments/environment';
-import { NbThemeModule, NbLayoutModule, NbCardModule, NbButtonModule, NbInputModule } from '@nebular/theme';
+import { NbThemeModule } from '@nebular/theme';
 import { NbAuthModule } from '@nebular/auth';
-
-const NG_MODULES = [
-  CommonModule,
-  FormsModule
-];
-
-const FIREBASE_MODULES = [
-  AngularFireDatabaseModule,
-  AngularFireAuthModule,
-];
+import { CommonModule } from '@angular/common';
 
 const FIREBASE_PROVIDERS = [
   AngularFireModule.initializeApp(firebaseConfig).providers,
-];
-
-const NEBULAR_MODULES = [
-  NbCardModule,
-  NbButtonModule,
-  NbInputModule,
-  NbLayoutModule,
-  NbAuthModule,
 ];
 
 const NEBULAR_THEME_PROVIDER = [
@@ -38,8 +17,8 @@ const NEBULAR_THEME_PROVIDER = [
 
 @NgModule({
   declarations: [],
-  imports: [...NG_MODULES, ...FIREBASE_MODULES, ...NEBULAR_MODULES],
-  exports: [...NG_MODULES, ...FIREBASE_MODULES, ...NEBULAR_MODULES],
+  imports: [CommonModule],
+  exports: [AngularFireModule, NbThemeModule, NbAuthModule]
 })
 export class CoreModule {
   static forRoot(): ModuleWithProviders {

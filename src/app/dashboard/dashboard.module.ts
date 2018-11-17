@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard.component';
 import { CoreModule } from '../core/core.module';
 import { AddNewContactComponent } from './add-new-contact/add-new-contact.component';
 import { HistoryComponent } from './history/history.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { HistoryComponent } from './history/history.component';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    CoreModule
+    SharedModule
   ]
 })
 export class DashboardModule { }
