@@ -7,6 +7,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { firebaseConfig } from '../../environments/environment';
 import { NbThemeModule, NbLayoutModule, NbCardModule, NbButtonModule, NbInputModule } from '@nebular/theme';
+import { NbAuthModule } from '@nebular/auth';
 
 const NG_MODULES = [
   CommonModule,
@@ -27,10 +28,12 @@ const NEBULAR_MODULES = [
   NbButtonModule,
   NbInputModule,
   NbLayoutModule,
+  NbAuthModule,
 ];
 
 const NEBULAR_THEME_PROVIDER = [
   NbThemeModule.forRoot({ name: 'cosmic' }).providers,
+  NbAuthModule.forRoot().providers // this is just here so that I can use the styles from nebulars login component
 ];
 
 @NgModule({
