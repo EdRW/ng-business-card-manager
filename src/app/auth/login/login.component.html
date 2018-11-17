@@ -6,11 +6,21 @@
 
       <nb-card-body>
 
-        <p>
-          login works!
-        </p>
+        <h1>Login</h1>
+        <p class="sub-title">Welcome! Use your email to login.</p>
 
-        <button nbButton fullWidth status="success">Login</button>
+        <form (ngSubmit)="onLoginEmail()">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" name="email" required [(ngModel)]="email">
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required [(ngModel)]="password">
+          </div>
+          <button nbButton fullWidth type="submit" status="success">Login</button>
+        </form>
 
       </nb-card-body>
 
