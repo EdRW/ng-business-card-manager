@@ -2,9 +2,13 @@
 
   <nb-layout-header fixed>
     <nav>
-        <button nbButton status="success" routerLink="/dashboard">
+        <button nbButton status="success" routerLink="">
           <i class="nb-home"></i>
           <span>Home</span>
+        </button>
+        <button nbButton status="success" routerLink="addcontact">
+          <i class="nb-plus"></i>
+          <span>Add Contact</span>
         </button>
         <button nbButton status="success" (click)="logout()">Logout</button>
     </nav>
@@ -17,6 +21,7 @@
     <p>
       dashboard works!
     </p>
+    <router-outlet></router-outlet>
 
   </nb-layout-column>
 
