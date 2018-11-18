@@ -4,7 +4,14 @@ import { FormsModule } from '@angular/forms';
 
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { NbLayoutModule, NbCardModule, NbButtonModule, NbInputModule } from '@nebular/theme';
+import {
+  NbLayoutModule,
+  NbCardModule,
+  NbButtonModule,
+  NbInputModule,
+  NbListModule,
+  NbUserModule,
+} from '@nebular/theme';
 
 const NG_MODULES = [
   CommonModule,
@@ -21,6 +28,8 @@ const NEBULAR_MODULES = [
   NbButtonModule,
   NbInputModule,
   NbLayoutModule,
+  NbListModule,
+  NbUserModule,
 ];
 
 

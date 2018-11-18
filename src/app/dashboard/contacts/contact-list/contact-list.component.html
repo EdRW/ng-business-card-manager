@@ -2,3 +2,18 @@
   contact-list works!
 </p>
 <button routerLink="details">Contact Details</button>
+
+<nb-card>
+  <nb-list>
+    <nb-list-item *ngFor="let businessCard of businessCards">
+      <nb-user
+        name="{{ businessCard.firstName + ' ' + businessCard.lastName}}"
+        title="{{ businessCard.email }}"
+        size="large"
+        badgeText="5"
+        badgePosition="bottom right"
+        routerLink="details">
+      </nb-user>
+    </nb-list-item>
+  </nb-list>
+</nb-card>
