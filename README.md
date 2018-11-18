@@ -12,6 +12,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
   * **auth/**
     * auth guard :heavy_check_mark:
     * auth service :heavy_check_mark:
+    * role guard
     * **login/**
       * login component :heavy_check_mark:
     * **register/**

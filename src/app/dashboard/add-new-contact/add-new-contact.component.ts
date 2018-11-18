@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OcrService } from 'src/app/core/ocr.service';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
+import { BusinessCard } from 'src/app/shared/models/business-card';
 
 @Component({
   selector: 'app-add-new-contact',
@@ -9,6 +10,7 @@ import { Observable, Subject } from 'rxjs';
   styleUrls: ['./add-new-contact.component.css']
 })
 export class AddNewContactComponent implements OnInit {
+    public newBusinessCard: BusinessCard;
     // toggle webcam on/off
     public showWebcam = true;
     public allowCameraSwitch = true;
@@ -26,7 +28,9 @@ export class AddNewContactComponent implements OnInit {
     // switch to next / previous / specific webcam; true/false: forward/backwards, string: deviceId
     private nextWebcam: Subject<boolean|string> = new Subject<boolean|string>();
 
-  constructor(private ocrService: OcrService) { }
+  constructor(private ocrService: OcrService) {
+    this.newBusinessCard = null;
+  }
 
   testOcrService() {
     this.ocrService.extractText();
