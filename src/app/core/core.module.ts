@@ -1,10 +1,11 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule, ModuleWithProviders, Optional, SkipSelf } from '@angular/core';
 
 import { AngularFireModule } from '@angular/fire';
 import { firebaseConfig } from '../../environments/environment';
 import { NbThemeModule } from '@nebular/theme';
 import { NbAuthModule } from '@nebular/auth';
 import { CommonModule } from '@angular/common';
+import { OcrService } from './ocr.service';
 
 const FIREBASE_PROVIDERS = [
   AngularFireModule.initializeApp(firebaseConfig).providers,
@@ -18,9 +19,17 @@ const NEBULAR_THEME_PROVIDER = [
 @NgModule({
   declarations: [],
   imports: [CommonModule],
-  exports: [AngularFireModule, NbThemeModule, NbAuthModule]
+  exports: [AngularFireModule, NbThemeModule, NbAuthModule],
+  providers: [OcrService],
 })
 export class CoreModule {
+  constructor (@Optional() @SkipSelf() parentModule: CoreModule) {
+    if (parentModule) {
+      throw new Error(
+        'CoreModule is already loaded. Import it in the AppModule only');
+    }
+  }
+
   static forRoot(): ModuleWithProviders {
     return <ModuleWithProviders>{
       ngModule: CoreModule,

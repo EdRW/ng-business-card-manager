@@ -6,9 +6,7 @@ import { switchMap } from 'rxjs/operators';
 import { AngularFireDatabase } from '@angular/fire/database';
 import * as firebase from 'firebase/app';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
 
   authState: Observable<{} | null>;

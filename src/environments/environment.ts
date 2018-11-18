@@ -10,6 +10,10 @@ export const firebaseConfig = {
   messagingSenderId: ''
 };
 
+export const gcpCloudVision = {
+  apiKey: ''
+};
+
 export const environment = {
   production: false
 };

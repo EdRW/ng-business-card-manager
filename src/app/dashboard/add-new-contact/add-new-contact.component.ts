@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OcrService } from 'src/app/core/ocr.service';
 
 @Component({
   selector: 'app-add-new-contact',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddNewContactComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ocrService: OcrService) { }
 
   ngOnInit() {
   }
 
+  testOcrService() {
+    this.ocrService.extractText();
+  }
 }

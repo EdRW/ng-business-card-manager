@@ -16,6 +16,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
       * login component :heavy_check_mark:
     * **register/**
       * register component
+  * **core/**
+    * core module :construction:
+    * ~~acquire-image service~~
+    * contacts service
+    * history service
+    * ocr service :construction:
   * **dashboard/**
     * dashboard module :construction:
     * dashboard-routing module :construction:
@@ -35,12 +41,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
         * contact-details component :construction:
     * **history/**
       * history component :construction:
-  * **core/**
-    * core module :construction:
-    * acquire-image service
-    * contacts service
-    * history service
-    * ocr service
+  * **shared/**
+    * shared module :heavy_check_mark:
+    * **models/**
+      * business-card class :construction:
 
 ### Doodle
 ![whiteboard doodle](./planning-doodle.jpg)
