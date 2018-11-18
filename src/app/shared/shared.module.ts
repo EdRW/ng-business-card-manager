@@ -11,7 +11,10 @@ import {
   NbInputModule,
   NbListModule,
   NbUserModule,
+  NbTabsetModule,
 } from '@nebular/theme';
+
+import {WebcamModule} from 'ngx-webcam';
 
 const NG_MODULES = [
   CommonModule,
@@ -30,12 +33,13 @@ const NEBULAR_MODULES = [
   NbLayoutModule,
   NbListModule,
   NbUserModule,
+  NbTabsetModule,
 ];
 
 
 @NgModule({
   declarations: [],
-  imports: [...NG_MODULES, ...FIREBASE_MODULES, ...NEBULAR_MODULES],
-  exports: [...NG_MODULES, ...FIREBASE_MODULES, ...NEBULAR_MODULES],
+  imports: [...NG_MODULES, ...FIREBASE_MODULES, ...NEBULAR_MODULES, WebcamModule],
+  exports: [...NG_MODULES, ...FIREBASE_MODULES, ...NEBULAR_MODULES, WebcamModule],
 })
 export class SharedModule { }
