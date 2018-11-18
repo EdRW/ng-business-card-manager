@@ -29,7 +29,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     * **add-contact/**
       * add-contact component :construction:
       * **from-camera/**
-        * from-camera component
+        * from-camera component :construction:
       * **from-file/**
         * from-file component
     * **contacts/**
