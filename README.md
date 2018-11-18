@@ -20,7 +20,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
   * **core/**
     * core module :construction:
     * ~~acquire-image service~~
-    * contacts service
+    * contacts service :construction:
     * history service
     * ocr service :construction:
   * **dashboard/**

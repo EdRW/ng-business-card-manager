@@ -11,7 +11,7 @@ export class AuthService {
 
   authState: Observable<{} | null>;
 
-  user: Observable<{} | null>;
+  user: Observable<firebase.User | null>;
   userUid: string;
   constructor(
     private afAuth: AngularFireAuth,
