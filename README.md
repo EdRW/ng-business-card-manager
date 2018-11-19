@@ -27,15 +27,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     * dashboard module :construction:
     * dashboard-routing module :construction:
     * dashboard component :construction:
-    * **add-contact/**
-      * add-contact component :construction:
-      * **from-camera/**
-        * from-camera component :construction:
-      * **from-file/**
-        * from-file component
     * **contacts/**
       * contacts module :construction:
       * contacts-routing module :construction:
+      * **add-contact/**
+        * add-contact component :construction:
+        * ~~**from-camera/**~~
+          * ~~from-camera component~~
+        * ~~**from-file/~~**
+          * ~~from-file component~~
       * **contact-list/**
         * contact-list component :construction:
       * **contact-details/**

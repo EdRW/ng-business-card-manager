@@ -13,16 +13,20 @@ export class ContactsService {
     private authService: AuthService,
     private db: AngularFireDatabase
     ) {
-      this.authService.user.subscribe( user => {
+    console.log('CONTACT SERVICE CONSTRUCTOR CALLED');
+    this.authService.getUserStatus().subscribe( user => {
         this.userContactsRef = this.db.list(`users/${user.uid}/contacts`);
-      });
+        console.log(`NEW CONTACTS TO WILL BE WRITTEN TO: users/${user.uid}/contacts`);
+    });
   }
 
   getUserContacts() {
+    // TODO find a way to make this available to comonents in their constructors
     return this.userContactsRef.valueChanges();
   }
 
   addNewContact(businessCard: BusinessCard) {
+    console.log(`ADDING A NEW USER ${businessCard.email}`);
     this.userContactsRef.push(businessCard);
   }
 }

@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
     // console.log(this.auth.isAdmin());
     // console.log('IS ADMIN IS ADMIN IS ADMIN');
 
-    return this.authService.user.pipe(
+    return this.authService.userRef.pipe(
       take(1),
       map((user) => !!user),
       tap((loggedIn) => {

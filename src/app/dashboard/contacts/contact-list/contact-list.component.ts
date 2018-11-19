@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BusinessCard } from 'src/app/shared/models/business-card';
+import { ContactsService } from 'src/app/core/contacts.service';
 
 @Component({
   selector: 'app-contact-list',
@@ -9,16 +10,12 @@ import { BusinessCard } from 'src/app/shared/models/business-card';
 export class ContactListComponent implements OnInit {
   businessCards: BusinessCard[];
 
-  constructor() {
-    this.businessCards = [
-      new BusinessCard('John0', 'Smith'),
-      new BusinessCard('John1', 'Smith'),
-      new BusinessCard('John2', 'Smith'),
-      new BusinessCard('John3', 'Smith')
-    ];
-  }
+  constructor(private contactService: ContactsService) { }
 
   ngOnInit() {
+    this.contactService.getUserContacts().subscribe( (businessCardList: BusinessCard[]) => {
+      this.businessCards =  businessCardList;
+    });
   }
 
 }

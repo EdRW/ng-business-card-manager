@@ -4,7 +4,7 @@ export class BusinessCard {
     public lastName?: string,
     public email?: string,
     public phoneNumber?: string,
-    public extraText?: string,
-    public imageString?: string, // base64 image string
+    public extraText = '',
+    public imageString = '', // base64 image string
   ) {}
 }

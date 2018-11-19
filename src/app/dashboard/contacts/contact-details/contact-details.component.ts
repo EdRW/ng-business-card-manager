@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {  } from '../../../core/core.module';
 import { BusinessCard } from 'src/app/shared/models/business-card';
+import { ContactsService } from 'src/app/core/contacts.service';
 
 @Component({
   selector: 'app-contact-details',
@@ -8,10 +9,13 @@ import { BusinessCard } from 'src/app/shared/models/business-card';
   styleUrls: ['./contact-details.component.css']
 })
 export class ContactDetailsComponent implements OnInit {
-  businessCard: BusinessCard;
-  canEdit = false;
+  @Input() businessCard: BusinessCard;
+  @Input() canEdit: boolean;
 
-  constructor() { }
+  constructor(private contactsService: ContactsService) {
+    this.businessCard = new BusinessCard();
+    this.canEdit = false;
+  }
 
   ngOnInit() {
   }
@@ -22,6 +26,7 @@ export class ContactDetailsComponent implements OnInit {
 
   saveClicked() {
     this.canEdit = false;
+    this.contactsService.addNewContact(this.businessCard);
   }
 
 }

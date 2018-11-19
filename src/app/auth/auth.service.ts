@@ -11,7 +11,7 @@ export class AuthService {
 
   authState: Observable<{} | null>;
 
-  user: Observable<firebase.User | null>;
+  userRef: Observable<any | null>;
   userUid: string;
   constructor(
     private afAuth: AngularFireAuth,
@@ -19,7 +19,7 @@ export class AuthService {
     private db: AngularFireDatabase
   ) {
     console.log('LOGIN SERVICE CONSTRUCTOR CALLED');
-    this.user = this.afAuth.authState
+    this.userRef = this.afAuth.authState
     .pipe(switchMap((user) => {
       if (user) {
         this.userUid = user.uid;
@@ -34,6 +34,7 @@ export class AuthService {
           console.log('ERROR UPDATING USER EMAIL');
         });
       } else {
+        console.log('USER NOT YET LOGGED IN');
         return of(null);
       }
     }));
@@ -42,7 +43,7 @@ export class AuthService {
   loginWithEmail(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((auth) => {
-        console.log(auth.user.uid);
+        console.log(`USER ID ${auth.user.uid}`);
         const createdAt = firebase.database.ServerValue.TIMESTAMP;
         console.log('CREATED AT');
         console.log(createdAt);

@@ -1,0 +1,44 @@
+<button nbButton status="success" (click)="testOcrService()">Test OCR Service</button>
+<nb-layout>
+  <nb-layout-column>
+      <app-contact-details [canEdit]="true"></app-contact-details>
+  </nb-layout-column>
+  <nb-layout-column>
+    <nb-card>
+      <nb-card-body>
+
+        <nb-tabset fullWidth>
+          <nb-tab tabTitle="From Camera" tabIcon="nb-notifications" responsive>
+            <nb-card>
+              <nb-card-header>
+                <button nbButton (click)="triggerSnapshot();">Take A Snapshot</button>
+                <button nbButton (click)="toggleWebcam();">Toggle Webcam</button>
+              </nb-card-header>
+              <nb-card-body>
+                <webcam
+                  *ngIf="showWebcam"
+                  [trigger]="triggerObservable"
+                  (imageCapture)="handleImage($event)"
+                  [allowCameraSwitch]="allowCameraSwitch"
+                  [switchCamera]="nextWebcamObservable"
+                  [videoOptions]="videoOptions"
+                  (cameraSwitched)="cameraWasSwitched($event)"
+                  (initError)="handleInitError($event)">
+                </webcam>
+              </nb-card-body>
+            </nb-card>
+          </nb-tab>
+
+          <nb-tab tabTitle="From Web" tabIcon="nb-cloudy" responsive>
+            <p>GRAB IMAGE FROM THE WEB HERE</p>
+          </nb-tab>
+          <nb-tab tabTitle="From File" tabIcon="nb-email" responsive>
+            <p>LOAD IMAGE FROM FILE HERE</p>
+          </nb-tab>
+        </nb-tabset>
+
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>
+
