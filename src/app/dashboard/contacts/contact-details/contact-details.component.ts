@@ -13,11 +13,15 @@ export class ContactDetailsComponent implements OnInit {
   @Input() canEdit: boolean;
 
   constructor(private contactsService: ContactsService) {
-    this.businessCard = new BusinessCard();
+    this.businessCard = null;
     this.canEdit = false;
   }
 
   ngOnInit() {
+    // if the businessCard wasnt injected by a parent element then create a new one.
+    if (!this.businessCard) {
+      this.businessCard = new BusinessCard();
+    }
   }
 
   editClicked() {

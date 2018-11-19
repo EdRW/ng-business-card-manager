@@ -23,9 +23,8 @@
     </div>
   </nb-card-body>
   <nb-card-footer>
-    <!--{{ businessCard.imageString }}-->
-    <div class="text-center">
-      <img class="img-thumbnail" src="https://lh3.googleusercontent.com/-sQsJlPZIPTc/ThwkpQeADtI/AAAAAAAAAuI/MWUH1I_7X0A/w530-h289-n/patrick-bateman-card.png" alt="Image of the Business Card">
+    <div class="text-center" *ngIf="businessCard.imageString">
+      <img class="img-thumbnail" src="{{ businessCard.imageString }}" alt="Image of the Business Card">
       <div class="caption">
         <p>Image of the Business Card</p>
       </div>

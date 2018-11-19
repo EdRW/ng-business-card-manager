@@ -3,6 +3,8 @@ import { OcrService } from 'src/app/core/ocr.service';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
 import { BusinessCard } from 'src/app/shared/models/business-card';
+declare var require: any;
+const domtoimage = require('dom-to-image');
 
 @Component({
   selector: 'app-add-new-contact',
@@ -10,6 +12,9 @@ import { BusinessCard } from 'src/app/shared/models/business-card';
   styleUrls: ['./add-new-contact.component.css']
 })
 export class AddNewContactComponent implements OnInit {
+    // tslint:disable-next-line:max-line-length
+    public imageUrlSrc: string;
+
     public newBusinessCard: BusinessCard;
     // toggle webcam on/off
     public showWebcam = true;
@@ -29,12 +34,30 @@ export class AddNewContactComponent implements OnInit {
     private nextWebcam: Subject<boolean|string> = new Subject<boolean|string>();
 
   constructor(private ocrService: OcrService) {
-    this.newBusinessCard = null;
+    this.newBusinessCard = new BusinessCard();
   }
 
-  testOcrService() {
-    this.ocrService.extractText();
+  extractTextFromWebImage() {
+    this.extractTextFromDom('webImage');
   }
+
+  setImageUrlSrc(imageUrlSrc: string) {
+    this.imageUrlSrc = imageUrlSrc;
+  }
+
+  extractTextFromDom(elementId: string) {
+    const imgNode = document.getElementById(elementId);
+    domtoimage.toPng(imgNode)
+    .then( (imageUri: string ) => {
+      console.log(imageUri);
+      this.ocrService.textDetection(imageUri).subscribe( (businessCard: BusinessCard) => {
+        this.newBusinessCard = businessCard;
+      });
+    })
+    .catch(error => console.log('ERROR WHEN CONVERTING IMAGE:\n', error));
+  }
+
+
 
   public ngOnInit(): void {
     WebcamUtil.getAvailableVideoInputs()

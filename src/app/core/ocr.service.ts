@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { gcpCloudVision } from 'src/environments/environment';
 import { BusinessCard } from '../shared/models/business-card';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 interface GcpResponse {
   responses: {
@@ -11,45 +13,45 @@ interface GcpResponse {
   }[];
 }
 
+
 @Injectable()
 export class OcrService {
-  readonly request: any = {
-    'requests': [
-      {
-        'image': {
-          'source': {
-            // tslint:disable-next-line:max-line-length
-            'imageUri': 'https://lh3.googleusercontent.com/-sQsJlPZIPTc/ThwkpQeADtI/AAAAAAAAAuI/MWUH1I_7X0A/w530-h289-n/patrick-bateman-card.png',
-          },
-        },
-        'features': [
-          {
-            'type': 'TEXT_DETECTION',
-            'maxResults': 1,
-          }
-        ]
-      }
-    ]
-  };
-
   readonly url = `https://vision.googleapis.com/v1/images:annotate?key=${gcpCloudVision.apiKey}`;
 
   constructor(private http: HttpClient) { }
 
-  extractText(): BusinessCard  {
-    let businessCard = null;
-    this.http.post(
+  textDetection(base64Img: string): Observable<BusinessCard>  {
+    const base64ImgNoHeader = base64Img.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
+    const request: any = {
+      'requests': [
+        {
+          'image': {
+            'content': `${base64ImgNoHeader}`,
+          },
+          'features': [
+            {
+              'type': 'TEXT_DETECTION',
+              'maxResults': 1,
+            }
+          ]
+        }
+      ]
+    };
+
+    return this.http.post(
       this.url,
-      this.request
-    ).subscribe( (results: any) => {
-      console.log('OCR RESULTS RESULTS');
-      console.log('RESPONSE\N', results);
-      const responseText = this.getTextFromResponse(results);
-      businessCard = this.parseBusinessCardFromText(responseText);
-      console.log('BUSINESSCARD:\n', businessCard);
-      console.log('OCR RESULTS RESULTS');
-    });
-    return businessCard;
+      request
+    ).pipe( map((results: any) => {
+        console.log('OCR RESULTS RESULTS');
+        console.log('RESPONSE\n', results);
+        const responseText = this.getTextFromResponse(results);
+        console.log(`RESPONSE TEXT: ${responseText}`);
+        const businessCard = this.parseBusinessCardFromText(responseText);
+        console.log('BUSINESSCARD:\n', businessCard);
+        console.log('OCR RESULTS RESULTS');
+        return businessCard;
+      })
+    );
   }
 
   getTextFromResponse(json: any): string {
@@ -63,16 +65,15 @@ export class OcrService {
     const emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     const responseLines = responseText.split('\n');
-    console.log('LINES\n', responseLines);
     const businessCard = new BusinessCard();
     responseLines.forEach( (line: string) => {
-      if (firstLastNamesRegEx.test(line)) {
-        const names = line.split('\s');
+      if (firstLastNamesRegEx.test(line) && !businessCard.firstName) {
+        const names = line.split(' ');
         businessCard.firstName = names[0];
         businessCard.lastName = names[1];
       }
-      if (phoneNumberRegEx.test(line)) { businessCard.phoneNumber = line; }
-      if (emailRegEx.test(line)) { businessCard.email = line; }
+      if (phoneNumberRegEx.test(line) && !businessCard.phoneNumber) { businessCard.phoneNumber = line; }
+      if (emailRegEx.test(line) && !businessCard.email) { businessCard.email = line; }
     });
 
     return businessCard;

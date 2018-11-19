@@ -1,9 +1,9 @@
 export class BusinessCard {
   constructor(
-    public firstName?: string,
-    public lastName?: string,
-    public email?: string,
-    public phoneNumber?: string,
+    public firstName = '',
+    public lastName = '',
+    public email = '',
+    public phoneNumber = '',
     public extraText = '',
     public imageString = '', // base64 image string
   ) {}
