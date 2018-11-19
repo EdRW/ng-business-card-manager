@@ -1,3 +1,31 @@
-<p>
-  contact-details works!
-</p>
+<nb-card>
+  <nb-card-header>
+    Contact Details
+    <button nbButton *ngIf="!canEdit" (click)="editClicked()">Edit</button>
+    <button nbButton *ngIf="canEdit" (click)="saveClicked()">Save</button>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text" class="form-control" id="firstName" name="firstName" nbInput required placeholder="First Name" required [(ngModel)]="businessCard.firstName">
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" id="lastName" name="lastName" nbInput required placeholder="Last Name" required [(ngModel)]="businessCard.lastName">
+    </div>
+    <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" nbInput required placeholder="Phone Number" required [(ngModel)]="businessCard.phoneNumber">
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" name="email" nbInput placeholder="Email Address" required [(ngModel)]="businessCard.email">
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <img src="{{ businessCard.imageString }}" alt="Image of the Business Card">
+    <div class="caption">
+      <p>Image of the Business Card</p>
+    </div>
+  </nb-card-footer>
+</nb-card>
