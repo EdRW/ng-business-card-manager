@@ -89,6 +89,8 @@ export class AddNewContactComponent implements OnInit {
     // tslint:disable-next-line:no-console
     console.info('received webcam image', webcamImage);
     this.webcamImage = webcamImage;
+    this.imageUrlSrc = webcamImage.imageAsDataUrl;
+    console.log(this.imageUrlSrc);
   }
 
   public cameraWasSwitched(deviceId: string): void {

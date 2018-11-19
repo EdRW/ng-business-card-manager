@@ -1,10 +1,14 @@
-<button nbButton status="success" (click)="testOcrService()">Test OCR Service</button>
+<button nbButton status="success" (click)="extractTextFromDom()">Test OCR Service</button>
 <nb-layout>
   <nb-layout-column>
       <app-contact-details [canEdit]="true" [businessCard]="newBusinessCard"></app-contact-details>
   </nb-layout-column>
   <nb-layout-column>
     <nb-card>
+      <nb-card-header>
+          <img [src]="imageUrlSrc" id="webImage">
+          <button nbButton (click)="extractTextFromWebImage()">Extract Text</button>
+      </nb-card-header>
       <nb-card-body>
 
         <nb-tabset fullWidth>
@@ -36,8 +40,6 @@
               <input type="url" class="form-control" id="url" name="url" nbInput placeholder="https://example.com/my-image.jpg" required #url>
             </div>
             <button nbButton (click)="setImageUrlSrc(url.value)">Choose Image</button>
-            <img [src]="imageUrlSrc" id="webImage">
-            <button nbButton (click)="extractTextFromWebImage()">Extract Text</button>
           </nb-tab>
           <nb-tab tabTitle="From File" tabIcon="nb-url" responsive>
             <p>LOAD IMAGE FROM FILE HERE</p>
