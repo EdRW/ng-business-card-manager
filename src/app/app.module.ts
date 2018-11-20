@@ -11,11 +11,13 @@ import { AuthGuard } from './auth/auth.guard';
 import { AuthService } from './auth/auth.service';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
+import { RegisterComponent } from './auth/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

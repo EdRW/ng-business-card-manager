@@ -12,20 +12,20 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
   * **auth/**
     * auth guard :heavy_check_mark:
     * auth service :heavy_check_mark:
-    * role guard
+    * admin guard :heavy_check_mark:
     * **login/**
       * login component :heavy_check_mark:
     * **register/**
-      * register component
+      * register component :construction:
   * **core/**
-    * core module :construction:
+    * core module :heavy_check_mark:
     * ~~acquire-image service~~
     * contacts service :construction:
     * history service :heavy_check_mark:
     * ocr service :heavy_check_mark:
   * **dashboard/**
     * dashboard module :heavy_check_mark:
-    * dashboard-routing module :construction:
+    * dashboard-routing module :heavy_check_mark:
     * dashboard component :construction:
     * **contacts/**
       * contacts module :heavy_check_mark:
