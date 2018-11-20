@@ -7,6 +7,8 @@ import { switchMap, mergeMap, take } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { HistoryService } from 'src/app/core/history.service';
 import { Action } from 'src/app/shared/models/history-log';
+// gtag declartion used in saveClicked()
+declare var gtag: Function;
 
 @Component({
   selector: 'app-contact-details',
@@ -58,6 +60,7 @@ export class ContactDetailsComponent implements OnInit {
 
   saveClicked() {
     this.historyService.log(Action.AddedContact, this.businessCard.email);
+    gtag('event', 'card_added');
     this.canEdit = false;
     this.contactsService.addNewContact(this.businessCard);
   }

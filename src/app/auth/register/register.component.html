@@ -2,7 +2,7 @@
   <h2 class="title">Register</h2>
   <small class="form-text sub-title">Yay a new user! Sign up with your email.</small>
 
-  <form (ngSubmit)="register()">
+  <form (ngSubmit)="onRegister()">
     <div class="form-group">
       <label for="email">Email</label>
       <input type="email" class="form-control" id="email" name="email" nbInput fullWidth placeholder="Email Address" required [(ngModel)]="email">

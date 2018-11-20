@@ -3,6 +3,9 @@ import { AuthService } from '../auth.service';
 import { HistoryService } from 'src/app/core/history.service';
 import { Router } from '@angular/router';
 import { Action } from 'src/app/shared/models/history-log';
+// gtag declartion used in register()
+declare var gtag: Function;
+
 
 @Component({
   selector: 'app-register',
@@ -46,6 +49,7 @@ export class RegisterComponent implements OnInit {
     this.authService.registerWithEmail(this.email, this.password)
         .then(() => {
           console.log('Registration Successful!');
+          gtag('event', 'sign_up');
           this.historyService.log(Action.Register);
           this.router.navigate(['dashboard']);
         })
