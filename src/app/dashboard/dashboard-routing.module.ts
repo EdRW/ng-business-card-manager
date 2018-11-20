@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { HistoryComponent } from './history/history.component';
+import { AdminGuard } from '../auth/admin.guard';
 
 const routes: Routes = [{
   path: '',
@@ -11,6 +12,7 @@ const routes: Routes = [{
     loadChildren: './contacts/contacts.module#ContactsModule'
   }, {
     path: 'history',
+    canActivate: [AdminGuard],
     component: HistoryComponent
   },
   { path: '', redirectTo: 'contacts', pathMatch: 'full' },

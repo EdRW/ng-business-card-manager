@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {Router} from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, take, map } from 'rxjs/operators';
 import { AngularFireDatabase } from '@angular/fire/database';
 import * as firebase from 'firebase/app';
 
@@ -44,6 +44,7 @@ export class AuthService {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((auth) => {
         console.log(`USER ID ${auth.user.uid}`);
+        this.userUid = auth.user.uid;
         const createdAt = firebase.database.ServerValue.TIMESTAMP;
         console.log('CREATED AT');
         console.log(createdAt);
@@ -74,6 +75,20 @@ export class AuthService {
   signOut() {
     this.afAuth.auth.signOut();
     this.router.navigate(['/']);
+  }
+
+  isCurrentUserAdmin(): Observable<boolean> {
+    return this.db.object(`admins/${this.userUid}`)
+      .valueChanges()
+      .pipe(
+        map( admin => {
+          if (!!admin) {
+            return true;
+          } else {
+            return false;
+          }
+        })
+      );
   }
 
   getUserStatus() {
