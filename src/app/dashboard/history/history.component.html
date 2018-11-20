@@ -1,3 +1,29 @@
-<p>
-  history works!
-</p>
+<nb-card class="container">
+  <nb-card-header>
+    <h2>User History</h2>
+  </nb-card-header>
+  <nb-card-body>
+    <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Timestamp</th>
+              <th scope="col">User ID</th>
+              <th scope="col">Action</th>
+              <th scope="col">Data</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let entry of entries, index as i;">
+              <td>{{ i }}</td>
+              <td>{{ entry.timeStamp }}</td>
+              <td>{{ entry.userUid }}</td>
+              <td>{{ entry.action }}</td>
+              <td>{{ entry.data }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </nb-card-body>
+</nb-card>

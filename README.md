@@ -21,15 +21,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     * core module :construction:
     * ~~acquire-image service~~
     * contacts service :construction:
-    * history service
-    * ocr service :construction:
+    * history service :heavy_check_mark:
+    * ocr service :heavy_check_mark:
   * **dashboard/**
-    * dashboard module :construction:
+    * dashboard module :heavy_check_mark:
     * dashboard-routing module :construction:
     * dashboard component :construction:
     * **contacts/**
-      * contacts module :construction:
-      * contacts-routing module :construction:
+      * contacts module :heavy_check_mark:
+      * contacts-routing module :heavy_check_mark:
       * **add-contact/**
         * add-contact component :construction:
         * ~~**from-camera/**~~
@@ -41,11 +41,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
       * **contact-details/**
         * contact-details component :construction:
     * **history/**
-      * history component :construction:
+      * history component :heavy_check_mark:
   * **shared/**
     * shared module :heavy_check_mark:
     * **models/**
-      * business-card class :construction:
+      * business-card class :heavy_check_mark:
+      * contact class :heavy_check_mark:
+      * history-log class :heavy_check_mark:
 
 ### Doodle
 ![whiteboard doodle](./planning-doodle.jpg)

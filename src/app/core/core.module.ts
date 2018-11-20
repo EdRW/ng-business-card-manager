@@ -6,6 +6,8 @@ import { NbThemeModule } from '@nebular/theme';
 import { NbAuthModule } from '@nebular/auth';
 import { CommonModule } from '@angular/common';
 import { OcrService } from './ocr.service';
+import { ContactsService } from './contacts.service';
+import { HistoryService } from './history.service';
 
 const FIREBASE_PROVIDERS = [
   AngularFireModule.initializeApp(firebaseConfig).providers,
@@ -20,7 +22,7 @@ const NEBULAR_THEME_PROVIDER = [
   declarations: [],
   imports: [CommonModule],
   exports: [AngularFireModule, NbThemeModule, NbAuthModule],
-  providers: [OcrService],
+  providers: [OcrService, ContactsService, HistoryService],
 })
 export class CoreModule {
   constructor (@Optional() @SkipSelf() parentModule: CoreModule) {

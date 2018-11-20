@@ -5,6 +5,8 @@ import { ContactsService } from 'src/app/core/contacts.service';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap, mergeMap, take } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { HistoryService } from 'src/app/core/history.service';
+import { Action } from 'src/app/shared/models/history-log';
 
 @Component({
   selector: 'app-contact-details',
@@ -16,6 +18,7 @@ export class ContactDetailsComponent implements OnInit {
   @Input() canEdit: boolean;
 
   constructor(private contactsService: ContactsService,
+              private historyService: HistoryService,
               private route: ActivatedRoute) {
     this.businessCard = new BusinessCard();
     this.canEdit = false;
@@ -54,6 +57,7 @@ export class ContactDetailsComponent implements OnInit {
   }
 
   saveClicked() {
+    this.historyService.log(Action.AddedContact, this.businessCard.email);
     this.canEdit = false;
     this.contactsService.addNewContact(this.businessCard);
   }

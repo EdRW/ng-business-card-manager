@@ -6,9 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Contact } from '../shared/models/contact';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ContactsService {
   userContactsRef: AngularFireList<BusinessCard>;
 

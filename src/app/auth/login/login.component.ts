@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { HistoryService } from 'src/app/core/history.service';
+import { Action } from 'src/app/shared/models/history-log';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +14,7 @@ export class LoginComponent implements OnInit {
   password: string;
   constructor(
     private authService: AuthService,
+    private historyService: HistoryService,
     private router: Router,
   ) { }
 
@@ -43,10 +46,12 @@ export class LoginComponent implements OnInit {
     this.authService.loginWithEmail(this.email, this.password)
         .then(() => {
           console.log('Login Successful!');
+          this.historyService.log(Action.LoggedIn);
           this.router.navigate(['dashboard']);
         })
         .catch( error => {
           console.log(error);
+          this.historyService.log(Action.Error, error);
           this.router.navigate(['login']);
         });
   }
