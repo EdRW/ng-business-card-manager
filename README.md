@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
 
+Check out the [Live Demo](https://business-card-manager-65b80.firebaseapp.com)
+
 ## Project Planning
 
 ### Structure
