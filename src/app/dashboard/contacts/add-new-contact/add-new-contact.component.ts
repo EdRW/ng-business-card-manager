@@ -49,7 +49,7 @@ export class AddNewContactComponent implements OnInit {
     const imgNode = document.getElementById(elementId);
     domtoimage.toPng(imgNode)
     .then( (imageUri: string ) => {
-      console.log(imageUri);
+      console.log('BASE64 IMAGE:\n', imageUri);
       this.ocrService.textDetection(imageUri).subscribe( (businessCard: BusinessCard) => {
         this.newBusinessCard = businessCard;
       });

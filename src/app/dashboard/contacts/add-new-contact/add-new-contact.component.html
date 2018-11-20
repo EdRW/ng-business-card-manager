@@ -1,4 +1,3 @@
-<button nbButton status="success" (click)="extractTextFromDom()">Test OCR Service</button>
 <nb-layout>
   <nb-layout-column>
       <app-contact-details [canEdit]="true" [businessCard]="newBusinessCard"></app-contact-details>
@@ -6,8 +5,10 @@
   <nb-layout-column>
     <nb-card>
       <nb-card-header>
-          <img [src]="imageUrlSrc" id="webImage" class="img-fluid">
-          <button nbButton (click)="extractTextFromWebImage()">Extract Text</button>
+          <div class="container-fluid">
+            <img *ngIf="imageUrlSrc" [src]="imageUrlSrc" id="webImage" class="img-fluid">
+          </div>
+          <button *ngIf="imageUrlSrc" nbButton (click)="extractTextFromWebImage()">Extract Text</button>
       </nb-card-header>
       <nb-card-body>
 
