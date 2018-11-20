@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { gcpCloudVision } from 'src/environments/environment';
+import { gcpCloudVision } from 'src/environments/environment.prod';
 import { BusinessCard } from '../shared/models/business-card';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';

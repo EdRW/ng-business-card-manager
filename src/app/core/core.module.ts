@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders, Optional, SkipSelf } from '@angular/core';
 
 import { AngularFireModule } from '@angular/fire';
-import { firebaseConfig } from '../../environments/environment';
+import { firebaseConfig } from '../../environments/environment.prod';
 import { NbThemeModule } from '@nebular/theme';
 import { NbAuthModule } from '@nebular/auth';
 import { CommonModule } from '@angular/common';
