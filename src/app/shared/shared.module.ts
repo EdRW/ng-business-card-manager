@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -19,6 +19,7 @@ import {WebcamModule} from 'ngx-webcam';
 const NG_MODULES = [
   CommonModule,
   FormsModule,
+  ReactiveFormsModule,
 ];
 
 const FIREBASE_MODULES = [

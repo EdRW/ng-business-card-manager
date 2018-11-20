@@ -1,12 +1,11 @@
 <nb-card>
   <nb-card-header>
-    <span>Contact List</span>
-    <input type="text" nbInput>
-    <button nbButton>Search</button>
+    <h2>Contact List</h2>
+    <input type="text" nbInput large fullWidth [formControl]="searchInput" placeholder="search by name or email address">
   </nb-card-header>
   <nb-card-body>
     <nb-list *ngIf="contacts">
-        <nb-list-item *ngFor="let contact of contacts">
+        <nb-list-item *ngFor="let contact of filteredContacts">
           <nb-user
             name="{{ contact.businessCard.firstName + ' ' + contact.businessCard.lastName}}"
             title="{{ contact.businessCard.email }}"

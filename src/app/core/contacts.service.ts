@@ -46,4 +46,8 @@ export class ContactsService {
   getContact(key: string): Observable<BusinessCard> {
     return this.db.object<BusinessCard>(`users/${this.authService.userUid}/contacts/${key}`).valueChanges();
   }
+
+  searchFullName(firstName: string, lastName: string) {
+    // return
+  }
 }
