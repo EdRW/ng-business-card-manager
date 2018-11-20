@@ -8,7 +8,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 * **app/**
   * app module :heavy_check_mark:
   * app component :heavy_check_mark:
-  * app-routing module :construction:
+  * app-routing module :heavy_check_mark:
   * **auth/**
     * auth guard :heavy_check_mark:
     * auth service :heavy_check_mark:
@@ -16,7 +16,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     * **login/**
       * login component :heavy_check_mark:
     * **register/**
-      * register component :construction:
+      * register component :heavy_check_mark:
   * **core/**
     * core module :heavy_check_mark:
     * ~~acquire-image service~~

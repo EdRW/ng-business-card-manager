@@ -1,3 +1,17 @@
-<p>
-  register works!
-</p>
+<nb-auth-block>
+  <h2 class="title">Register</h2>
+  <small class="form-text sub-title">Yay a new user! Sign up with your email.</small>
+
+  <form (ngSubmit)="register()">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" name="email" nbInput fullWidth placeholder="Email Address" required [(ngModel)]="email">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" name="password" nbInput fullWidth placeholder="Password" required [(ngModel)]="password">
+    </div>
+    <button nbButton fullWidth type="submit" status="success">Sign Up!</button>
+  </form>
+</nb-auth-block>

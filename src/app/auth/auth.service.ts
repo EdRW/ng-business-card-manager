@@ -72,6 +72,38 @@ export class AuthService {
       });
   }
 
+  registerWithEmail(email: string, password: string) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+      .then((auth) => {
+        console.log(`USER ID ${auth.user.uid}`);
+        this.userUid = auth.user.uid;
+        const createdAt = firebase.database.ServerValue.TIMESTAMP;
+        console.log('CREATED AT');
+        console.log(createdAt);
+        console.log('CREATED AT');
+        const sessionKey = this.db.database
+                        .ref(`sessions`)
+                        .push({
+                          userUid: auth.user.uid
+                        }).key;
+
+        const sessionPayload: any = {
+          createdAt: createdAt,
+          userUid: auth.user.uid,
+          currentSessionKey: sessionKey,
+        };
+
+        const sessionPayloads: any = {};
+        sessionPayloads[`currentSession/${auth.user.uid}`] = sessionPayload;
+        sessionPayloads[`users/${auth.user.uid}/sessions/${sessionKey}`] = {'createdAt': createdAt};
+        return this.db.database.ref().update(sessionPayloads);
+      })
+      .catch(error => {
+        console.log(error);
+        throw error;
+      });
+  }
+
   signOut() {
     this.afAuth.auth.signOut();
     this.router.navigate(['/']);

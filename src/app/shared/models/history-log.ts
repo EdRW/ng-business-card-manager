@@ -2,6 +2,7 @@ export enum Action {
   AddedContact = 'ADDED CONTACT',
   LoggedIn = 'LOGGED IN',
   LoggedOut = 'LOGGED OUT',
+  Register = 'REGISTERED',
   Searched = 'SEARCHED',
   Error = 'ERROR',
 }
