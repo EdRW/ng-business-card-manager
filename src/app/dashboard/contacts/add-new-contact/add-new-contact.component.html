@@ -6,7 +6,7 @@
   <nb-layout-column>
     <nb-card>
       <nb-card-header>
-          <img [src]="imageUrlSrc" id="webImage">
+          <img [src]="imageUrlSrc" id="webImage" class="img-fluid">
           <button nbButton (click)="extractTextFromWebImage()">Extract Text</button>
       </nb-card-header>
       <nb-card-body>
@@ -43,6 +43,7 @@
           </nb-tab>
           <nb-tab tabTitle="From File" tabIcon="nb-url" responsive>
             <p>LOAD IMAGE FROM FILE HERE</p>
+            <input nbInput type="file" (change)="onFileChanged($event)">
           </nb-tab>
         </nb-tabset>
 

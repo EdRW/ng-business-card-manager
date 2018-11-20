@@ -13,7 +13,7 @@ const domtoimage = require('dom-to-image');
 })
 export class AddNewContactComponent implements OnInit {
     // tslint:disable-next-line:max-line-length
-    public imageUrlSrc: string;
+    public imageUrlSrc: string | ArrayBuffer;
 
     public newBusinessCard: BusinessCard;
     // toggle webcam on/off
@@ -57,8 +57,18 @@ export class AddNewContactComponent implements OnInit {
     .catch(error => console.log('ERROR WHEN CONVERTING IMAGE:\n', error));
   }
 
+  onFileChanged(event) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: ProgressEvent) => {
+        this.imageUrlSrc = (<FileReader>e.target).result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
 
 
+// --------------------WEB CAM CODE------------------------------------------
   public ngOnInit(): void {
     WebcamUtil.getAvailableVideoInputs()
       .then((mediaDevices: MediaDeviceInfo[]) => {
