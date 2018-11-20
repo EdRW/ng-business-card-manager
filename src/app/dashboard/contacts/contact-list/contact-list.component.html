@@ -5,15 +5,15 @@
     <button nbButton>Search</button>
   </nb-card-header>
   <nb-card-body>
-    <nb-list>
-        <nb-list-item *ngFor="let businessCard of businessCards">
+    <nb-list *ngIf="contacts">
+        <nb-list-item *ngFor="let contact of contacts">
           <nb-user
-            name="{{ businessCard.firstName + ' ' + businessCard.lastName}}"
-            title="{{ businessCard.email }}"
+            name="{{ contact.businessCard.firstName + ' ' + contact.businessCard.lastName}}"
+            title="{{ contact.businessCard.email }}"
             size="large"
             badgeText="5"
             badgePosition="bottom right"
-            routerLink="details">
+            [routerLink]=contact.key>
           </nb-user>
         </nb-list-item>
       </nb-list>

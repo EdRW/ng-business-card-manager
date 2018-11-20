@@ -8,11 +8,11 @@ const routes: Routes = [{
   path: '',
   component: ContactListComponent
 }, {
-  path: 'details',
-  component: ContactDetailsComponent
-}, {
   path: 'add',
   component: AddNewContactComponent
+}, {
+  path: ':id',
+  component: ContactDetailsComponent
 }];
 
 @NgModule({
