@@ -11,7 +11,7 @@ export class AuthService {
 
   authState: Observable<{} | null>;
 
-  userRef: Observable<any | null>;
+  userRef: Observable<firebase.User | null>;
   userUid: string;
   constructor(
     private afAuth: AngularFireAuth,
@@ -125,5 +125,9 @@ export class AuthService {
 
   getUserStatus() {
     return this.afAuth.user;
+  }
+
+  getAuthState() {
+    return this.userRef;
   }
 }
