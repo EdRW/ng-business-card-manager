@@ -12,6 +12,7 @@ import {
   NbListModule,
   NbUserModule,
   NbTabsetModule,
+  NbActionsModule,
 } from '@nebular/theme';
 
 import {WebcamModule} from 'ngx-webcam';
@@ -28,6 +29,7 @@ const FIREBASE_MODULES = [
 ];
 
 const NEBULAR_MODULES = [
+  NbActionsModule,
   NbCardModule,
   NbButtonModule,
   NbInputModule,

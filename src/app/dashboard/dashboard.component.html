@@ -1,22 +1,33 @@
 <nb-layout>
 
-  <nb-layout-header fixed>
-    <nav>
-        <button nbButton status="success" routerLink="">
-          <i class="nb-home"></i>
-          <span>Home</span>
-        </button>
-        <button nbButton status="success" routerLink="contacts/add">
-          <i class="nb-plus"></i>
-          <span>Add Contact</span>
-        </button>
-        <button nbButton status="success" routerLink="history">
-          <i class="nb-compose"></i>
-          <span>History</span>
-        </button>
-        <button nbButton status="success" (click)="logout()">Logout</button>
-    </nav>
+  <nb-layout-header>
 
+    <div class="container">
+      <nb-actions fullWidth>
+        <nb-action>
+            <button nbButton status="success" routerLink="">
+                <i class="nb-home"></i>
+                <span>Home</span>
+              </button>
+        </nb-action>
+        <nb-action>
+          <button nbButton status="success" routerLink="contacts/add">
+            <i class="nb-plus"></i>
+            <span>Add Contact</span>
+          </button>
+        </nb-action>
+        <nb-action>
+          <button nbButton status="success" routerLink="history">
+              <i class="nb-compose"></i>
+              <span>History</span>
+              <small>Admins </small>
+            </button>
+        </nb-action>
+        <nb-action>
+          <button nbButton status="success" (click)="logout()">Logout</button>
+        </nb-action>
+      </nb-actions>
+    </div>
 
   </nb-layout-header>
 
