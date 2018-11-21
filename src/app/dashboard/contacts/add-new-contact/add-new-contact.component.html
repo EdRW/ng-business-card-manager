@@ -1,4 +1,75 @@
 <nb-layout>
+    <nb-layout-column>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <app-contact-details [canEdit]="true" [businessCard]="newBusinessCard"></app-contact-details>
+        </div>
+        <div class="col-md-6  col-sm-12">
+            <nb-card>
+                <nb-card-header>
+                  <h4>Import Business Card Image</h4>
+                  <div class="container-fluid">
+                    <img *ngIf="imageUrlSrc" [src]="imageUrlSrc" id="webImage" class="img-fluid">
+                  </div>
+                  <button *ngIf="imageUrlSrc" nbButton (click)="extractTextFromWebImage()">Extract Text</button>
+                </nb-card-header>
+                <nb-card-body>
+
+                  <nb-tabset fullWidth (changeTab)="turnOffWebCam($event)">
+                    <nb-tab tabTitle="From Camera" tabIcon="nb-power-circled" responsive>
+                      <nb-card>
+                        <nb-card-header>
+                          <h2></h2>
+                          <nb-actions>
+                              <nb-action>
+                                <button nbButton (click)="toggleWebcam();">Webcam on/off</button>
+                              </nb-action>
+                            <nb-action *ngIf="showWebcam">
+                                <button nbButton status="success" (click)="triggerSnapshot();">Take A Snapshot</button>
+                            </nb-action>
+                          </nb-actions>
+                        </nb-card-header>
+                        <nb-card-body >
+                                <!-- Webcam -->
+                              <webcam
+                                *ngIf="showWebcam"
+                                [trigger]="triggerObservable"
+                                (imageCapture)="handleImage($event)"
+                                [allowCameraSwitch]="allowCameraSwitch"
+                                [switchCamera]="nextWebcamObservable"
+                                [videoOptions]="videoOptions"
+                                [height]="250"
+                                (cameraSwitched)="cameraWasSwitched($event)"
+                                (initError)="handleInitError($event)">
+                              </webcam>
+                        </nb-card-body>
+                      </nb-card>
+                    </nb-tab>
+
+                    <nb-tab tabTitle="From Web" tabIcon="nb-cloudy" responsive>
+                      <div class="form-group">
+                        <label for="url"><h6>GRAB IMAGE FROM THE WEB HERE</h6></label>
+                        <input type="url" class="form-control" id="url" name="url" nbInput placeholder="https://example.com/my-image.jpg" required #url>
+                      </div>
+                      <button nbButton (click)="setImageUrlSrc(url.value)">Choose Image</button>
+                    </nb-tab>
+                    <nb-tab tabTitle="From File" tabIcon="nb-email" responsive>
+                      <label for="file"><h6>UPLOAD IMAGE FROM FILE HERE</h6></label>
+                      <input nbInput type="file" accept="image/*" id="file" name="file" (change)="onFileChanged($event)">
+                    </nb-tab>
+                  </nb-tabset>
+
+                </nb-card-body>
+              </nb-card>
+        </div>
+      </div>
+    </div>
+  </nb-layout-column>
+    </nb-layout>
+
+<!--
+<nb-layout>
   <nb-layout-column>
       <app-contact-details [canEdit]="true" [businessCard]="newBusinessCard"></app-contact-details>
   </nb-layout-column>
@@ -52,4 +123,4 @@
     </nb-card>
   </nb-layout-column>
 </nb-layout>
-
+-->

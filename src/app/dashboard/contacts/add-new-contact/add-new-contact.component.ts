@@ -25,6 +25,7 @@ export class AddNewContactComponent implements OnInit {
       // width: {ideal: 1024},
       // height: {ideal: 576}
     };
+    public width: number;
     public errors: WebcamInitError[] = [];
     // latest snapshot
     public webcamImage: WebcamImage = null;
@@ -78,10 +79,20 @@ export class AddNewContactComponent implements OnInit {
 
   public triggerSnapshot(): void {
     this.trigger.next();
+    this.showWebcam = false;
   }
 
   public toggleWebcam(): void {
     this.showWebcam = !this.showWebcam;
+  }
+
+  public turnOffWebCam(event: any) {
+    console.log(event);
+    if (event['tabTitle'] === 'From Camera') {
+      this.showWebcam = true;
+    } else {
+      this.showWebcam = false;
+    }
   }
 
   public handleInitError(error: WebcamInitError): void {

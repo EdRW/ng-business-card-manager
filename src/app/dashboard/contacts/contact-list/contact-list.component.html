@@ -4,17 +4,18 @@
     <input type="text" nbInput large fullWidth [formControl]="searchInput" placeholder="search by name or email address">
   </nb-card-header>
   <nb-card-body>
-    <nb-list *ngIf="contacts">
-        <nb-list-item *ngFor="let contact of filteredContacts">
-          <nb-user
-            name="{{ contact.businessCard.firstName + ' ' + contact.businessCard.lastName}}"
-            title="{{ contact.businessCard.email }}"
-            size="large"
-            badgeText="5"
-            badgePosition="bottom right"
-            [routerLink]=contact.key>
-          </nb-user>
-        </nb-list-item>
-      </nb-list>
+    <nb-list *ngIf="contacts.length">
+      <nb-list-item *ngFor="let contact of filteredContacts">
+        <nb-user
+          name="{{ contact.businessCard.firstName + ' ' + contact.businessCard.lastName}}"
+          title="{{ contact.businessCard.email }}"
+          size="large"
+          badgeText="5"
+          badgePosition="bottom right"
+          [routerLink]=contact.key>
+        </nb-user>
+      </nb-list-item>
+    </nb-list>
+    <div *ngIf="!contacts.length">It looks like you haven't added any contacts yet</div>
   </nb-card-body>
 </nb-card>

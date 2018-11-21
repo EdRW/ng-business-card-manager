@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BusinessCard } from 'src/app/shared/models/business-card';
 import { ContactsService } from 'src/app/core/contacts.service';
 import { Contact } from 'src/app/shared/models/contact';
 import * as _ from 'lodash';
@@ -7,6 +6,7 @@ import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { HistoryService } from 'src/app/core/history.service';
 import { Action } from 'src/app/shared/models/history-log';
+import { untilComponentDestroyed } from 'ng2-rx-componentdestroyed';
 
 @Component({
   selector: 'app-contact-list',
@@ -14,7 +14,6 @@ import { Action } from 'src/app/shared/models/history-log';
   styleUrls: ['./contact-list.component.css']
 })
 export class ContactListComponent implements OnInit {
-  // businessCards: BusinessCard[];
   contacts: Contact[];
   filteredContacts: Contact[];
   searchInput = new FormControl();
@@ -24,10 +23,15 @@ export class ContactListComponent implements OnInit {
               private historyService: HistoryService
               ) {
     this.searchString = '';
+    this.contacts = [];
+    this.filteredContacts = [];
   }
 
   ngOnInit() {
     this.contactService.getUserContactsSnapshots()
+      .pipe(
+        untilComponentDestroyed(this) // <--- magic is here!
+      )
       .subscribe( contacts => {
         this.contacts = contacts;
         console.log(this.contacts);
@@ -35,7 +39,10 @@ export class ContactListComponent implements OnInit {
     });
 
     this.searchInput.valueChanges
-      .pipe(debounceTime(1000))
+      .pipe(
+        debounceTime(1000),
+        untilComponentDestroyed(this) // <--- magic is here!
+        )
       .subscribe( (newValue: string) => {
         this.searchString = newValue.toLowerCase();
         this.applyFilters();
@@ -55,5 +62,9 @@ export class ContactListComponent implements OnInit {
     } else {
       this.filteredContacts = this.contacts;
     }
+  }
+
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngOnDestroy() {
   }
 }

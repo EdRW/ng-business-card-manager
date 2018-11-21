@@ -31,6 +31,7 @@
     "firebase": "^5.5.8",
     "lodash": "^4.17.11",
     "nebular-icons": "^1.1.0",
+    "ng2-rx-componentdestroyed": "^3.0.1",
     "ngx-webcam": "^0.2.0",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"
