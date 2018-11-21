@@ -43,6 +43,18 @@ export class ContactDetailsComponent implements OnInit {
         });
   }
 
+  validateForm(): boolean {
+    if (this.businessCard.firstName.length === 0) {
+      return false;
+    }
+
+    if (this.businessCard.lastName.length === 0) {
+      return false;
+    }
+
+    return true;
+  }
+
   ngOnInit() {
     // if the businessCard wasnt injected by a parent element then create a new one.
     /*
@@ -59,10 +71,14 @@ export class ContactDetailsComponent implements OnInit {
   }
 
   saveClicked() {
-    this.historyService.log(Action.AddedContact, this.businessCard.email);
-    gtag('event', 'card_added');
-    this.canEdit = false;
-    this.contactsService.addNewContact(this.businessCard);
+    if (this.validateForm()) {
+      this.historyService.log(Action.AddedContact, this.businessCard.email);
+      gtag('event', 'card_added');
+      this.canEdit = false;
+      this.contactsService.addNewContact(this.businessCard);
+    } else {
+      console.log('INVALID NEW CONTACT FORM');
+    }
   }
 
 }
