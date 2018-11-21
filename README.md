@@ -22,26 +22,26 @@ Check out the [Live Demo](https://business-card-manager-65b80.firebaseapp.com)
   * **core/**
     * core module :heavy_check_mark:
     * ~~acquire-image service~~
-    * contacts service :construction:
+    * contacts service :heavy_check_mark:
     * history service :heavy_check_mark:
     * ocr service :heavy_check_mark:
   * **dashboard/**
     * dashboard module :heavy_check_mark:
     * dashboard-routing module :heavy_check_mark:
-    * dashboard component :construction:
+    * dashboard component :heavy_check_mark:
     * **contacts/**
       * contacts module :heavy_check_mark:
       * contacts-routing module :heavy_check_mark:
       * **add-contact/**
-        * add-contact component :construction:
+        * add-contact component :heavy_check_mark:
         * ~~**from-camera/**~~
           * ~~from-camera component~~
         * ~~**from-file/~~**
           * ~~from-file component~~
       * **contact-list/**
-        * contact-list component :construction:
+        * contact-list component :heavy_check_mark:
       * **contact-details/**
-        * contact-details component :construction:
+        * contact-details component :heavy_check_mark:
     * **history/**
       * history component :heavy_check_mark:
   * **shared/**
@@ -50,6 +50,13 @@ Check out the [Live Demo](https://business-card-manager-65b80.firebaseapp.com)
       * business-card class :heavy_check_mark:
       * contact class :heavy_check_mark:
       * history-log class :heavy_check_mark:
+
+### Other Reqirements
+* Add Google Analytics. Log events with gtags. :heavy_check_mark:
+* Add Timestamp for search history logs. :heavy_check_mark:
+* Add tests :x:
+* Add max session logout functionality :x:
+
 
 ### Doodle
 ![whiteboard doodle](./planning-doodle.jpg)
